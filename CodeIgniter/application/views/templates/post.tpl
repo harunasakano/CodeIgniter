@@ -17,7 +17,11 @@
 	</div>
 	<div class="pagination">
 	{for $i=1 to $pagination}
-    <a href="{$url}">{$i}</a>
+		{if ($i==1)}
+    	<a href="{$url}">{$i}</a>
+		{else}
+		<a href="{$url}?page={$i}">{$i}</a>
+		{/if}
 	{/for}
 	</div>
 {else}
