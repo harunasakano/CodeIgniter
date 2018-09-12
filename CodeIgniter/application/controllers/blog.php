@@ -26,6 +26,7 @@ class Blog extends CI_Controller {
 		$data['url'] = base_url();
 
 		//blog_modelのget_all_postメソッドを実行してデータをqueryに格納
+		if (isset($_GET['page'])==false){
 		$getData = $this->blog_model->get_new_posts();
 		//日付をキーにして、タイトルと本文を格納
 				for ($i=0; $i <count($getData); $i++) {
@@ -33,8 +34,9 @@ class Blog extends CI_Controller {
 					$data['article'][$getData[$i]->created][]= $getData[$i]->title;
 				}
 					$this->smarty->view("post.tpl",$data);
+		}
 
-
+		//もし２がリクエストされたらこちらを表示
 		if (isset($_GET['page']) && $_GET['page']=='2'){
 			$data['page_id'] = $_GET['page'];
 			$getData2 = $this->blog_model->get_second_posts();
