@@ -21,10 +21,6 @@ class Entry extends CI_Controller {
 	 		$category = $this->input->post('category');
 	 		$title = $this->input->post('title');
 	 		$content = $this->input->post('content');
-			var_dump($category);
-			var_dump($title);
-			var_dump($content);
-
 	 		$this->blog_model->save_new_entry($category,$title,$content);
 	 }
 }
