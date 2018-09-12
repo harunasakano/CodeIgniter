@@ -14,6 +14,7 @@ class Entry extends CI_Controller {
 
 			if ($mode == 'post') {
 				$this->new_entry();
+				header('Location:http://localhost/codeIgniter/index.php/entry');
 			}
     }
 
