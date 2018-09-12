@@ -5,10 +5,16 @@ class Blog_model extends CI_Model{
 		parent::__construct();
 	}
 
-	//最後記事5件を返す
+	//最新記事5件を返す
 	public function get_new_posts(){
 		$this->db->limit(5);
 		$query = $this->db->get('post');
+		return $query->result();
+	}
+
+	//次の記事5件を返す
+	public function get_second_posts(){
+		$query = $this->db->get('post',5,5);
 		return $query->result();
 	}
 
@@ -17,7 +23,6 @@ class Blog_model extends CI_Model{
 		$result = $this->db->select('count(*) as count')->get("post")->row();
 		return $result->count;
 	}
-
 
 	public function save_new_entry($category,$title,$content){
 

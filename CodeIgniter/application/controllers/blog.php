@@ -31,9 +31,20 @@ class Blog extends CI_Controller {
 				for ($i=0; $i <count($getData); $i++) {
 					$data['article'][$getData[$i]->created][]= $getData[$i]->id;
 					$data['article'][$getData[$i]->created][]= $getData[$i]->title;
-					$data['article'][$getData[$i]->created][]= $getData[$i]->body;
 				}
 					$this->smarty->view("post.tpl",$data);
+
+
+		if (isset($_GET['page']) && $_GET['page']=='2'){
+			$data['page_id'] = $_GET['page'];
+			$getData2 = $this->blog_model->get_second_posts();
+			//日付をキーにして、タイトルと本文を格納
+					for ($i=0; $i <count($getData2); $i++){
+						$data['article'][$getData2[$i]->created][]= $getData2[$i]->id;
+						$data['article'][$getData2[$i]->created][]= $getData2[$i]->title;
+					}
+						$this->smarty->view("post.tpl",$data);
+		}
 
 		//記事選択後、クリックされた後の表示
 				if (isset($request_id)){
@@ -43,8 +54,6 @@ class Blog extends CI_Controller {
 					$data['single_query_body'] = $content[0]->body;
 				}
 					$this->smarty->view("post.tpl",$data);
-
-
 
 		//戻る押下時の処理
 				if(isset($_POST['action'])){
