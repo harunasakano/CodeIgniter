@@ -22,6 +22,11 @@ class Entry extends CI_Controller {
 	 		$category = $this->input->post('category');
 	 		$title = $this->input->post('title');
 	 		$content = $this->input->post('content');
+
+			htmlspecialchars($category, ENT_QUOTES, "UTF-8");
+			htmlspecialchars($title, ENT_QUOTES, "UTF-8");
+			htmlspecialchars($content, ENT_QUOTES, "UTF-8");
+
 	 		$this->blog_model->save_new_entry($category,$title,$content);
 	}
 }
