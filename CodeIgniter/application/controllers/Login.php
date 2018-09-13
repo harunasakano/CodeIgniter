@@ -50,11 +50,14 @@ class Login extends CI_Controller {
 			//データベースから一致するユーザIDとパスワードを検索して
 			$login_result = null;
 			$login_result = $this->User_model->user_matched($user_id,$password);
-			var_dump($login_result);
 
 			//一致したデータが返ってくればログイン成功
 			if (empty($login_result)==false) {
+				session_start();
+				$_SESSION['login_status'] ='success';
 				$login_messege =  "ログインに成功しました";
+				var_dump($_SESSION);
+
 			}else{
 				$login_messege =  "一致するユーザーが見つかりませんでした";
 			}
