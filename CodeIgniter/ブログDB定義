@@ -1,0 +1,59 @@
+DB定義
+
+
+
+	本システムのDB定義を記述する
+
+
+	テーブル物理名					user
+	テーブル論理名					ユーザ
+
+	論理名				物理名				データ型					NULL			デフォルト				キー							コメント
+	ユーザID				id				Varchar(10)												primary
+	パスワード				password				Varchar(8)																			ログイン時のパスワード
+	作成日				created				datetime																			レコード作成時間
+
+
+	テーブル物理名					blog
+	テーブル論理名					ブログ情報																						
+
+	論理名				物理名				データ型					NULL			デフォルト				キー							コメント
+	ブログID				id				Int(11) unsigned												primary auto_increment
+	ユーザID				user_id				Varchar(10)												fk user.id
+	ブログタイトル				title				Varchar(20)																			ブログサイトのタイトル
+	作成日				created				datetime																			レコード作成時間
+
+
+	テーブル物理名					post
+	テーブル論理名					記事情報
+
+	論理名				物理名				データ型					NULL			デフォルト				キー							コメント
+	記事ID				id				Int(11) unsigned												primary auto_increment
+	ブログID				blog_id				Int(11) unsigned												fk blog.id
+	記事タイトル				title				Varchar(20)																			記事のタイトル
+	記事本文				body				text																			記事の本文
+	カテゴリID				category_id				Int(11) unsigned												fk category.id							記事に設定されたカテゴリ
+	削除フラグ				is_delete				Tinyiint(1)								0											0：公開 1：非公開(削除済み)
+	作成日				created				datetime																			レコード作成時間
+	更新日				modified				datetime																			レコード更新時間
+
+
+	テーブル物理名					category
+	テーブル論理名					カテゴリマスタ
+
+	論理名				物理名				データ型					NULL			デフォルト				キー							コメント
+	カテゴリID				id				Int(11) unsigned												primary auto_increment
+	ブログID				blog_id				Int(11) unsigned												fk blog.id
+	カテゴリ名				name				Varchar(20)																			カテゴリの名前
+	作成日				created				datetime																			レコード作成時間
+
+
+	テーブル物理名					comment
+	テーブル論理名					コメント情報
+
+	論理名				物理名				データ型					NULL			デフォルト				キー							コメント
+	コメントID				id				Int(11) unsigned												primary auto_increment
+	記事ID				post_id				Int(11) unsigned												fk post.id							コメントする記事のID
+	投稿者名				name				Varchar(10)																			コメントした人の名前
+	コメント内容				body				text																			コメント内容
+	作成日				created				datetime																			レコード作成時間

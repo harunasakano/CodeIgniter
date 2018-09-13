@@ -9,6 +9,12 @@
 	<p style="color: red;">{$error_v}</p>
 	{/foreach}
 	{/if}
+	{if isset($user_duplication)}
+	<p style="color: red;">{$user_duplication}</p>
+	{/if}
+	{if isset($login_result)}
+	{$login_result}
+	{/if}
 	<form method="post">
 	<div  class="login_form">
 		<div style="margin: 10px;" class="user_form">ユーザID
@@ -18,10 +24,11 @@
 			<input type="password" name="password">
 		</div>
 		<div style="margin: 10px;" class="req_button">
+			<input type="hidden" name="mode" value="request">
 			<button type='submit' name='login' value='login_req'>ログイン</button>
 			<button type='submit' name='registration' value='registration_req'>新規登録</button>
 		</div>
-	</form>
 	</div>
+	</form>
 </body>
 </html>

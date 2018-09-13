@@ -13,6 +13,8 @@ class Blog_model extends CI_Model{
 	}
 
 	//次の記事5件を返す
+	// 改良必要 ２だったら5　3だったら9　4だったら13
+	// 3　6　9
 	public function get_second_posts(){
 		$query = $this->db->get('post',5,5);
 		return $query->result();

@@ -3,50 +3,73 @@ class Login extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
-
+		$this->load->model("User_model");
 	}
 
 	public function index(){
-
 		$this->smarty->view('login.tpl');
-		var_dump($_POST);
+
+		//postがあった時の処理
+		if(isset($_POST['mode'])){
+			//ユーザidとパスを変数に格納し、エスケープ処理
+			$user_id = $_POST['user_id'];
+			$password = $_POST['password'];
+			$user_id = htmlspecialchars($user_id, ENT_QUOTES, "UTF-8");
+			$password = htmlspecialchars($password, ENT_QUOTES, "UTF-8");
+		}
 
 		//ユーザID及びパスワード新規登録リクエストされた時の処理
 		if(isset($_POST['registration'])){
 
-		//ユーザidとパスを変数に格納し、エスケープ処理
-		$user_id = $_POST['user_id'];
-		$password = $_POST['password'];
-		$user_id = htmlspecialchars($user_id, ENT_QUOTES, "UTF-8");
-		$password = htmlspecialchars($password, ENT_QUOTES, "UTF-8");
-
 		//エスケープ処理したIDとパスをバリデーションチェックにかける
-		$check_result = $this->validation($user_id,$password);
+		$check_result = null;
+		$check_User_result = null;
 
-			if(isset($check_result)){
-				$data['error_text'] = $check_result;
+		$check_result = $this->validation($user_id,$password);
+		$check_User_result = $this->User_model->check_duplication_userid($user_id);
+
+			if(isset($check_result) || $check_User_result>=1){
+				//バリデーションにエラーがある場合
+				if(isset($check_result)){
+					$data['error_text'] = $check_result;
+
+				//データベースから同一user_id検索し帰ってきた場合
+				}else if ($check_User_result>=1){
+					$data['user_duplication'] = "そのユーザIDは既に使用されています";
+				}
 				$this->smarty->view('login.tpl',$data);
+
+			//バリデーションOK、同一ユーザもいない場合新規登録
 			}else{
-			//バリデーションOK
-			//データベースからuser_id検索し、同一のものがなければ新規登録する
-			//もう一度ログイン画面へいく
-				echo "バリデーションOK";
+				$this->User_model->save_new_user($user_id,$password);
 			}
 
 		//ログインリクエストされた場合の処理
 		}else if(isset($_POST['login'])){
+			$login_messege = null;
 			//データベースから一致するユーザIDとパスワードを検索して
-			//一致したらログイン成功
-			echo "login_req";
-		}
-	}
+			$login_result = null;
+			$login_result = $this->User_model->user_matched($user_id,$password);
+			var_dump($login_result);
 
+			//一致したデータが返ってくればログイン成功
+			if (empty($login_result)==false) {
+				$login_messege =  "ログインに成功しました";
+			}else{
+				$login_messege =  "一致するユーザーが見つかりませんでした";
+			}
+		}
+			if(isset($login_messege)){
+			$data['login_result'] = $login_messege;
+			$this->smarty->view('login.tpl',$data);
+			}
+	}
 	//ユーザIDが半角英数字10文字満たし
 	//パスワードが半角英数字8文字満たしてたら
 	function validation($user_id,$password){
 		$error = null;
 		//未入力チェック
-		if(is_null($user_id) && is_null($password)){
+		if(empty($user_id) && empty($password)){
 			$error[] = "入力欄が空欄のままです";
 		}else if (empty($user_id)) {
 			$error[] = "ユーザIDが入力されていません";
@@ -64,14 +87,13 @@ class Login extends CI_Controller {
 		}
 
 		//文字数チェック
-		if (strlen($user_id)<8 && strlen($password<8)){
-			$error[] = "ユーザID・パスワードは8文字以上でご指定下さい";
-		}else if(strlen($user_id)<8){
-			$error[] = "ユーザIDは8文字以上でご指定下さい";
-		}else if(strlen($password)<8){
-			$error[] = "パスワードは8文字以上でご指定下さい";
+		if (strlen($user_id)>=10 && strlen($password)>=8){
+			$error[] = "ユーザIDは10文字、パスワードは8文字まででご指定下さい";
+		}else if(strlen($user_id)>=10){
+			$error[] = "ユーザIDは10文字までです";
+		}else if(strlen($password)>=8){
+			$error[] = "パスワードは8文字までです";
 		}
-
 		return $error;
 	}
 }
