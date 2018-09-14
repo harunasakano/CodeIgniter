@@ -12,11 +12,11 @@ class Blog_model extends CI_Model{
 		return $query->result();
 	}
 
-	//次の記事5件を返す
-	// 改良必要 ２だったら5　3だったら9　4だったら13
-	// 3　6　9
-	public function get_second_posts(){
-		$query = $this->db->get('post',5,5);
+	//ページ数が送られる
+	public function get_posts($page){
+		$page--;
+		$fetch = $page*5;
+		$query = $this->db->get('post',5,$fetch);
 		return $query->result();
 	}
 

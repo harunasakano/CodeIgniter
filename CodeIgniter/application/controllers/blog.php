@@ -37,9 +37,9 @@ class Blog extends CI_Controller {
 		}
 
 		//もし２がリクエストされたらこちらを表示
-		if (isset($_GET['page']) && $_GET['page']=='2'){
-			$data['page_id'] = $_GET['page'];
-			$getData2 = $this->blog_model->get_second_posts();
+		if (isset($_GET['page'])){
+			$page = $_GET['page'];
+			$getData2 = $this->blog_model->get_posts($page);
 			//日付をキーにして、タイトルと本文を格納
 					for ($i=0; $i <count($getData2); $i++){
 						$data['article'][$getData2[$i]->created][]= $getData2[$i]->id;
