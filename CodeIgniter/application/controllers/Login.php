@@ -4,13 +4,15 @@ class Login extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model("User_model");
+
 	}
 
 	public function index(){
+
 		//ログインチェック
-		if(isset($_SESSION['login_status'])){
-			header('Location:http://localhost/codeIgniter/index.php/blog');
-		}
+		// if(isset($_SESSION['login_status'])){
+		// 	header('Location:http://localhost/codeIgniter/index.php/blog');
+		// }
 
 		$this->smarty->view('login.tpl');
 
@@ -47,6 +49,8 @@ class Login extends CI_Controller {
 			//バリデーションOK、同一ユーザもいない場合新規登録
 			}else{
 				$this->User_model->save_new_user($user_id,$password);
+				header('Location:http://localhost/codeIgniter/index.php/login');
+				exit();
 			}
 
 		//ログインリクエストされた場合の処理
@@ -58,7 +62,9 @@ class Login extends CI_Controller {
 
 			//一致したデータが返ってくればログイン成功
 			if (empty($login_result)==false) {
-				$_SESSION['login_status'] ='success';
+				$login_result['status'] = "login_done";
+				$this->session->set_userdata($login_result);
+
 				$success_message =  "login";
 				$jump_url = "http://localhost/codeIgniter/index.php/blog?success=".$success_message;
 				header("Location: ".$jump_url);
