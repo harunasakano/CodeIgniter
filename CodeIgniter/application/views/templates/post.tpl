@@ -4,9 +4,12 @@
 	<title>CodeIgniter's BLOG</title>
 </head>
 <body>
-	<h2><a href="http://localhost/codeIgniter/index.php/entry">CodeIgniter's BLOG</a></h2>
+	<h2><a href="http://localhost/codeIgniter/index.php/entry">CodeIgniter's BLOG</a></h2><a href="http://localhost/codeIgniter/index.php/login">ログイン</a>
 {if isset($smarty.get.success)}
 <p>ログインしました！</p>
+{/if}
+{if isset($smarty.session.status)}
+<p>{$smarty.session.status}さんでログイン中</p>
 {/if}
 {if is_null($post_id)}
 	<div class="new_article_list">

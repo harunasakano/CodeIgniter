@@ -10,9 +10,9 @@ class Login extends CI_Controller {
 	public function index(){
 
 		//ログインチェック
-		// if(isset($_SESSION['login_status'])){
-		// 	header('Location:http://localhost/codeIgniter/index.php/blog');
-		// }
+		if(isset($_SESSION['status'])){
+		 	$data['login_user'] = $_SESSION['status'];
+		 }
 
 		$this->smarty->view('login.tpl');
 
@@ -62,7 +62,7 @@ class Login extends CI_Controller {
 
 			//一致したデータが返ってくればログイン成功
 			if (empty($login_result)==false) {
-				$login_result['status'] = "login_done";
+				$login_result['status'] = $login_result[0]->id;
 				$this->session->set_userdata($login_result);
 
 				$success_message =  "login";

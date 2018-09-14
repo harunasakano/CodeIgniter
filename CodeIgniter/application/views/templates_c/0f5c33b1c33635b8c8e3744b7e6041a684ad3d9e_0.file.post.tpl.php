@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33-dev-12, created on 2018-09-14 09:18:11
+/* Smarty version 3.1.33-dev-12, created on 2018-09-14 17:58:24
   from 'C:\xampp\htdocs\CodeIgniter\application\views\templates\post.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33-dev-12',
-  'unifunc' => 'content_5b9afe43b636c9_15835954',
+  'unifunc' => 'content_5b9b78304b89b0_59361699',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0f5c33b1c33635b8c8e3744b7e6041a684ad3d9e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CodeIgniter\\application\\views\\templates\\post.tpl',
-      1 => 1536884273,
+      1 => 1536915498,
       2 => 'file',
     ),
   ),
@@ -20,16 +20,20 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5b9afe43b636c9_15835954 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5b9b78304b89b0_59361699 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="ja">
 <head>
 	<meta charset="utf-8">
 	<title>CodeIgniter's BLOG</title>
 </head>
 <body>
-	<h2><a href="http://localhost/codeIgniter/index.php/entry">CodeIgniter's BLOG</a></h2>
+	<h2><a href="http://localhost/codeIgniter/index.php/entry">CodeIgniter's BLOG</a></h2><a href="http://localhost/codeIgniter/index.php/login">ログイン</a>
 <?php if (isset($_GET['success'])) {?>
 <p>ログインしました！</p>
+<?php }
+if (isset($_SESSION['status'])) {?>
+<p><?php echo $_SESSION['status'];?>
+さんでログイン中</p>
 <?php }
 if (is_null($_smarty_tpl->tpl_vars['post_id']->value)) {?>
 	<div class="new_article_list">

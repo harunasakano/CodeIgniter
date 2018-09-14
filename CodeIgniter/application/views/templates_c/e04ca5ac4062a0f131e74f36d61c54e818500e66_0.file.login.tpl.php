@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33-dev-12, created on 2018-09-13 17:24:06
+/* Smarty version 3.1.33-dev-12, created on 2018-09-14 17:58:25
   from 'C:\xampp\htdocs\CodeIgniter\application\views\templates\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33-dev-12',
-  'unifunc' => 'content_5b9a1ea6abc5f7_65829256',
+  'unifunc' => 'content_5b9b78317d0e75_57137222',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e04ca5ac4062a0f131e74f36d61c54e818500e66' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CodeIgniter\\application\\views\\templates\\login.tpl',
-      1 => 1536827044,
+      1 => 1536915430,
       2 => 'file',
     ),
   ),
@@ -20,13 +20,17 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5b9a1ea6abc5f7_65829256 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5b9b78317d0e75_57137222 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="ja">
 <head>
 	<meta charset="utf-8">
 </head>
 <body>
 	<h2>ログインフォーム</h2>
+	<?php if (isset($_SESSION['status'])) {?>
+	<p><?php echo $_SESSION['status'];?>
+さんでログイン中</p>
+	<?php }?>
 	<?php if (isset($_smarty_tpl->tpl_vars['error_text']->value)) {?>
 	<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['error_text']->value, 'error_v');

@@ -4,6 +4,9 @@
 </head>
 <body>
 	<h2>ログインフォーム</h2>
+	{if isset($smarty.session.status)}
+	<p>{$smarty.session.status}さんでログイン中</p>
+	{/if}
 	{if isset($error_text)}
 	{foreach $error_text as $error_v}
 	<p style="color: red;">{$error_v}</p>
