@@ -7,6 +7,11 @@ class Login extends CI_Controller {
 	}
 
 	public function index(){
+		//ログインチェック
+		if(isset($_SESSION['login_status'])){
+			header('Location:http://localhost/codeIgniter/index.php/blog');
+		}
+
 		$this->smarty->view('login.tpl');
 
 		//postがあった時の処理
@@ -53,19 +58,18 @@ class Login extends CI_Controller {
 
 			//一致したデータが返ってくればログイン成功
 			if (empty($login_result)==false) {
-				session_start();
 				$_SESSION['login_status'] ='success';
-				$login_messege =  "ログインに成功しました";
-				var_dump($_SESSION);
+				$success_message =  "login";
+				$jump_url = "http://localhost/codeIgniter/index.php/blog?success=".$success_message;
+				header("Location: ".$jump_url);
+				exit();
 
 			}else{
-				$login_messege =  "一致するユーザーが見つかりませんでした";
+				$login_false_message =  "ユーザ名、またはパスワードに誤りがあります";
+				$data['login_result'] = $login_false_message;
+				$this->smarty->view('login.tpl',$data);
 			}
-		}
-			if(isset($login_messege)){
-			$data['login_result'] = $login_messege;
-			$this->smarty->view('login.tpl',$data);
-			}
+	}
 	}
 	//ユーザIDが半角英数字10文字満たし
 	//パスワードが半角英数字8文字満たしてたら

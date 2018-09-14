@@ -13,7 +13,7 @@
 	<p style="color: red;">{$user_duplication}</p>
 	{/if}
 	{if isset($login_result)}
-	{$login_result}
+	<p style="color: red;">{$login_result}</p>
 	{/if}
 	<form method="post">
 	<div  class="login_form">

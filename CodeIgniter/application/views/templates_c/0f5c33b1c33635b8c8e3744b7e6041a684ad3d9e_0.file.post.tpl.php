@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33-dev-12, created on 2018-09-12 17:51:42
+/* Smarty version 3.1.33-dev-12, created on 2018-09-14 09:12:02
   from 'C:\xampp\htdocs\CodeIgniter\application\views\templates\post.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33-dev-12',
-  'unifunc' => 'content_5b98d39e0863b9_77657662',
+  'unifunc' => 'content_5b9afcd280f144_02980521',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0f5c33b1c33635b8c8e3744b7e6041a684ad3d9e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CodeIgniter\\application\\views\\templates\\post.tpl',
-      1 => 1536742300,
+      1 => 1536883910,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5b98d39e0863b9_77657662 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5b9afcd280f144_02980521 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="ja">
 <head>
 	<meta charset="utf-8">
@@ -28,7 +28,10 @@ function content_5b98d39e0863b9_77657662 (Smarty_Internal_Template $_smarty_tpl)
 </head>
 <body>
 	<h2><a href="http://localhost/codeIgniter/index.php/entry">CodeIgniter's BLOG</a></h2>
-<?php if (is_null($_smarty_tpl->tpl_vars['post_id']->value)) {?>
+<?php if (isset($_GET['success'])) {?>
+<p>ログインしました！</p>
+<?php }
+if (is_null($_smarty_tpl->tpl_vars['post_id']->value)) {?>
 	<div class="new_article_list">
 		<p>新着記事</p>
 		<?php

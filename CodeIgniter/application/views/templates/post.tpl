@@ -5,6 +5,9 @@
 </head>
 <body>
 	<h2><a href="http://localhost/codeIgniter/index.php/entry">CodeIgniter's BLOG</a></h2>
+{if isset($smarty.get.success)}
+<p>ログインしました！</p>
+{/if}
 {if is_null($post_id)}
 	<div class="new_article_list">
 		<p>新着記事</p>
