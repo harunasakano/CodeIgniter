@@ -4,6 +4,9 @@
 </head>
 <body>
 	<title>記事投稿</title>
+	{if isset ($entry_error)}
+	<p style="color: red;">{$entry_error}</p>
+	{/if}
 	<div class="post_aria">
 		<h2>記事投稿フォーム</h2>
 		<form method="post" action="">

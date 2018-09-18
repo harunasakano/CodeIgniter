@@ -14,6 +14,9 @@
 {if is_null($post_id)}
 	<div class="new_article_list">
 		<p>新着記事</p>
+		{if isset($smarty.get.post)}
+		<div style="color:blue;">NEW!</div>
+		{/if}
 		{foreach $article as $keyvar=>$itemvar}
 			<div class="article_list">
 				<p><a href="{$url}?post_id={$itemvar.0}">{$itemvar.1}</a><br>

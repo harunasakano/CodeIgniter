@@ -8,6 +8,7 @@ class Blog_model extends CI_Model{
 	//最新記事5件を返す
 	public function get_new_posts(){
 		$this->db->limit(5);
+		$this->db->order_by('created','DESC');
 		$query = $this->db->get('post');
 		return $query->result();
 	}
@@ -16,6 +17,7 @@ class Blog_model extends CI_Model{
 	public function get_posts($page){
 		$page--;
 		$fetch = $page*5;
+		$this->db->order_by('created','DESC');
 		$query = $this->db->get('post',5,$fetch);
 		return $query->result();
 	}

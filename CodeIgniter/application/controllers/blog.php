@@ -1,4 +1,7 @@
 <?php
+/*
+メイン画面
+*/
 class Blog extends CI_Controller {
 
 	function __construct(){

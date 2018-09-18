@@ -1,4 +1,7 @@
 <?php
+/*
+ログイン画面
+*/
 class Login extends CI_Controller {
 
 	function __construct(){
