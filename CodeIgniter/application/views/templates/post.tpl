@@ -4,16 +4,21 @@
 	<title>CodeIgniter's BLOG</title>
 </head>
 <body>
-	<h2><a href="http://localhost/codeIgniter/index.php/entry">CodeIgniter's BLOG</a></h2><a href="http://localhost/codeIgniter/index.php/login">ログイン</a>
+	<h2><a href="http://localhost/codeIgniter/index.php/entry">CodeIgniter's BLOG</a></h2>
+{if isset($smarty.session.status)==false}
+<a href="http://localhost/codeIgniter/index.php/login">ログイン</a>
+{/if}
 {if isset($smarty.get.success)}
 <p>ログインしました！</p>
 {/if}
 {if isset($smarty.session.status)}
-<p>{$smarty.session.status}さんでログイン中</p>
+<p><a href="http://localhost/codeIgniter/index.php/login">{$smarty.session.status}さん</a>でログイン中</p>
 {/if}
 {if is_null($post_id)}
 	<div class="new_article_list">
+		{if isset($smarty.get.page)==false}
 		<p>新着記事</p>
+		{/if}
 		{if isset($smarty.get.post)}
 		<div style="color:blue;">NEW!</div>
 		{/if}

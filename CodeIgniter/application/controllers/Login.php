@@ -2,12 +2,15 @@
 /*
 ログイン画面
 */
+
+require_once  APPPATH . 'validation.php';
+
+defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller {
 
 	function __construct(){
 		parent::__construct();
 		$this->load->model("User_model");
-
 	}
 
 	public function index(){
@@ -35,7 +38,7 @@ class Login extends CI_Controller {
 		$check_result = null;
 		$check_User_result = null;
 
-		$check_result = $this->validation($user_id,$password);
+		$check_result = validation($user_id,$password);
 		$check_User_result = $this->User_model->check_duplication_userid($user_id);
 
 			if(isset($check_result) || $check_User_result>=1){
@@ -79,37 +82,5 @@ class Login extends CI_Controller {
 				$this->smarty->view('login.tpl',$data);
 			}
 	}
-	}
-	//ユーザIDが半角英数字10文字満たし
-	//パスワードが半角英数字8文字満たしてたら
-	function validation($user_id,$password){
-		$error = null;
-		//未入力チェック
-		if(empty($user_id) && empty($password)){
-			$error[] = "入力欄が空欄のままです";
-		}else if (empty($user_id)) {
-			$error[] = "ユーザIDが入力されていません";
-		}else if(empty($password)){
-			$error[] = "パスワードが入力されていません";
-		}
-
-		//半角英数チェック
-		if (preg_match("/^[a-zA-Z0-9]+$/", $user_id)==false && preg_match("/^[a-zA-Z0-9]+$/", $password)==false) {
-    		$error[] = "ユーザID・パスワードに指定できるのは半角英数字のみです";
-		}else if(preg_match("/^[a-zA-Z0-9]+$/", $user_id)==false){
-			$error[] = "ユーザIDに指定できるのは半角英数字のみです";
-		}else if(preg_match("/^[a-zA-Z0-9]+$/", $password)==false){
-			$error[] = "パスワードに指定できるのは半角英数字のみです";
-		}
-
-		//文字数チェック
-		if (strlen($user_id)>=10 && strlen($password)>=8){
-			$error[] = "ユーザIDは10文字、パスワードは8文字まででご指定下さい";
-		}else if(strlen($user_id)>=10){
-			$error[] = "ユーザIDは10文字までです";
-		}else if(strlen($password)>=8){
-			$error[] = "パスワードは8文字までです";
-		}
-		return $error;
 	}
 }

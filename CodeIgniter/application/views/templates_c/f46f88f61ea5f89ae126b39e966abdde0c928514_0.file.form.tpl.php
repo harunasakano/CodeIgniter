@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33-dev-12, created on 2018-09-18 10:24:01
+/* Smarty version 3.1.33-dev-12, created on 2018-09-18 14:35:59
   from 'C:\xampp\htdocs\CodeIgniter\application\views\templates\form.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33-dev-12',
-  'unifunc' => 'content_5ba053b14b0fc5_64501666',
+  'unifunc' => 'content_5ba08ebfab3597_02168353',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'f46f88f61ea5f89ae126b39e966abdde0c928514' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CodeIgniter\\application\\views\\templates\\form.tpl',
-      1 => 1537233835,
+      1 => 1537248946,
       2 => 'file',
     ),
   ),
@@ -20,15 +20,15 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ba053b14b0fc5_64501666 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ba08ebfab3597_02168353 (Smarty_Internal_Template $_smarty_tpl) {
 $_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\CodeIgniter\\system\\libraries\\Smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
 ?>
 <head>
 <html lang="ja">
 <meta charset="utf-8">
+<title>記事投稿</title>
 </head>
 <body>
-	<title>記事投稿</title>
 	<?php if (isset($_smarty_tpl->tpl_vars['entry_error']->value)) {?>
 	<p style="color: red;"><?php echo $_smarty_tpl->tpl_vars['entry_error']->value;?>
 </p>

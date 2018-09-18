@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33-dev-12, created on 2018-09-18 11:11:08
+/* Smarty version 3.1.33-dev-12, created on 2018-09-18 12:36:45
   from 'C:\xampp\htdocs\CodeIgniter\application\views\templates\post.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33-dev-12',
-  'unifunc' => 'content_5ba05ebcae6073_71772230',
+  'unifunc' => 'content_5ba072cdc34379_12388067',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0f5c33b1c33635b8c8e3744b7e6041a684ad3d9e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CodeIgniter\\application\\views\\templates\\post.tpl',
-      1 => 1537236667,
+      1 => 1537241802,
       2 => 'file',
     ),
   ),
@@ -20,24 +20,29 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ba05ebcae6073_71772230 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ba072cdc34379_12388067 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="ja">
 <head>
 	<meta charset="utf-8">
 	<title>CodeIgniter's BLOG</title>
 </head>
 <body>
-	<h2><a href="http://localhost/codeIgniter/index.php/entry">CodeIgniter's BLOG</a></h2><a href="http://localhost/codeIgniter/index.php/login">ログイン</a>
-<?php if (isset($_GET['success'])) {?>
+	<h2><a href="http://localhost/codeIgniter/index.php/entry">CodeIgniter's BLOG</a></h2>
+<?php if (isset($_SESSION['status']) == false) {?>
+<a href="http://localhost/codeIgniter/index.php/login">ログイン</a>
+<?php }
+if (isset($_GET['success'])) {?>
 <p>ログインしました！</p>
 <?php }
 if (isset($_SESSION['status'])) {?>
-<p><?php echo $_SESSION['status'];?>
-さんでログイン中</p>
+<p><a href="http://localhost/codeIgniter/index.php/login"><?php echo $_SESSION['status'];?>
+さん</a>でログイン中</p>
 <?php }
 if (is_null($_smarty_tpl->tpl_vars['post_id']->value)) {?>
 	<div class="new_article_list">
+		<?php if (isset($_GET['page']) == false) {?>
 		<p>新着記事</p>
+		<?php }?>
 		<?php if (isset($_GET['post'])) {?>
 		<div style="color:blue;">NEW!</div>
 		<?php }?>

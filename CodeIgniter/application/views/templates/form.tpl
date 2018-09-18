@@ -1,9 +1,9 @@
 <head>
 <html lang="ja">
 <meta charset="utf-8">
+<title>記事投稿</title>
 </head>
 <body>
-	<title>記事投稿</title>
 	{if isset ($entry_error)}
 	<p style="color: red;">{$entry_error}</p>
 	{/if}
