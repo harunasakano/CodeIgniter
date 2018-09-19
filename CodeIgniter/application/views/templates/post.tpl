@@ -22,12 +22,21 @@
 		{if isset($smarty.get.post)}
 		<div style="color:blue;">NEW!</div>
 		{/if}
+		{if isset($smarty.get.page)}
+		{foreach $article as $keyvar=>$itemvar}
+			<div class="article_list">
+				<p><a href="{$url}?page={$smarty.get.page}&post_id={$itemvar.0}">{$itemvar.1}</a><br>
+					{$keyvar}</p>
+			</div>
+		{/foreach}
+		{else}
 		{foreach $article as $keyvar=>$itemvar}
 			<div class="article_list">
 				<p><a href="{$url}?post_id={$itemvar.0}">{$itemvar.1}</a><br>
 					{$keyvar}</p>
 			</div>
 		{/foreach}
+		{/if}
 	</div>
 	<div class="pagination">
 	{for $i=1 to $pagination}
@@ -40,7 +49,7 @@
 	</div>
 {else}
 	<div class="single_content">
-		<h3>{$single_query_title}</h3>{$single_query_created}<p>{$single_query_body}</p>
+		<h3>{$single_query_title}</h3>{$single_query_created}<p>{$single_query_body}</p><p>{$single_query_category}</p>
 	</div>
 	<form method="post">
 	<button type='submit' name='action' value='back'>記事一覧に戻る</button>

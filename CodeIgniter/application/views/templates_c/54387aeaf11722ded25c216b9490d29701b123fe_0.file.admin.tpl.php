@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33-dev-12, created on 2018-09-18 15:45:22
+/* Smarty version 3.1.33-dev-12, created on 2018-09-18 17:58:15
   from 'C:\xampp\htdocs\CodeIgniter\application\views\templates\admin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33-dev-12',
-  'unifunc' => 'content_5ba09f02e5a195_16557884',
+  'unifunc' => 'content_5ba0be2780bd77_15998767',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '54387aeaf11722ded25c216b9490d29701b123fe' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CodeIgniter\\application\\views\\templates\\admin.tpl',
-      1 => 1537253114,
+      1 => 1537261092,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ba09f02e5a195_16557884 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ba0be2780bd77_15998767 (Smarty_Internal_Template $_smarty_tpl) {
 ?><head>
 <html lang="ja">
 <meta charset="utf-8">
@@ -28,11 +28,13 @@ function content_5ba09f02e5a195_16557884 (Smarty_Internal_Template $_smarty_tpl)
 </head>
 	<body>
 		<div class="container">
-			<h2><a href="http://localhost/codeIgniter/index.php/entry">CodeIgniter's BLOG</a></h2>
-				<div class="title_change">
+			<div style="font-size:20px; color:pink;">admin_page</div>
+			<h2>CodeIgniter's BLOG</h2>
+				<div class="butten_change">
 					<form method="post" action="">
-					<a href="">ブログタイトル変更</a>
+					<button type='submit' name='action' value='back'>ブログタイトル変更</button>
 				</div>
+				<h3>記事編集</h3>
 				<?php if (is_null($_smarty_tpl->tpl_vars['post_id']->value)) {?>
 						<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['article']->value, 'itemvar', false, 'keyvar');
@@ -40,7 +42,8 @@ if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['keyvar']->value => $_smarty_tpl->tpl_vars['itemvar']->value) {
 ?>
 							<div class="article_list">
-								<p><a href="http://localhost/codeIgniter/index.php/admin?post_id=<?php echo $_smarty_tpl->tpl_vars['itemvar']->value[0];?>
+								<p><a href="http://localhost/codeIgniter/index.php/admin?page=<?php echo $_GET['page'];?>
+&post_id=<?php echo $_smarty_tpl->tpl_vars['itemvar']->value[0];?>
 "><?php echo $_smarty_tpl->tpl_vars['itemvar']->value[1];?>
 </a><br>
 									<?php echo $_smarty_tpl->tpl_vars['keyvar']->value;?>
@@ -70,17 +73,30 @@ $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 
 ?>
 					</div>
 				<?php } else { ?>
-					<div class="single_content">
-						<h3><?php echo $_smarty_tpl->tpl_vars['single_query_title']->value;?>
-</h3><?php echo $_smarty_tpl->tpl_vars['single_query_created']->value;?>
-<p><?php echo $_smarty_tpl->tpl_vars['single_query_body']->value;?>
+					<div class="single_edit_content">
+						<div class="content_title">
+						<p>タイトル：</p>
+						<input type="text" name="edit_title" value="<?php echo $_smarty_tpl->tpl_vars['single_query_title']->value;?>
+">
+						</div>
+						<div class="content_aria">
+						<p>本文：</p>
+						<textarea name="edit_content" rows="8" cols="80"><?php echo $_smarty_tpl->tpl_vars['single_query_body']->value;?>
+</textarea>
+						<p>カテゴリー</p>
+						<input type="checkbox" name="edit_category"><?php echo $_smarty_tpl->tpl_vars['single_query_category']->value;?>
+<br>
+						<p>最終更新日：<?php echo $_smarty_tpl->tpl_vars['single_query_created']->value;?>
 </p>
-					</div>
+						</div>
 					<form method="post">
-					<button type='submit' name='action' value='back'>記事一覧に戻る</button>
+					<input type=hidden name="edit_id" value="<?php echo $_GET['post_id'];?>
+">
+					<div style="margin-bottom:10px;"><button type='submit' name='edit' value='change'>変更する</button></div>
+					<div style="margin-bottom:30px;"><button type='submit' name='action' value='back'>記事一覧に戻る</button></div>
 					</form>
 				<?php }?>
-		</div>
+					</div>
 	</body>
 </html>
 <?php }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33-dev-12, created on 2018-09-18 12:36:45
+/* Smarty version 3.1.33-dev-12, created on 2018-09-19 09:42:01
   from 'C:\xampp\htdocs\CodeIgniter\application\views\templates\post.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33-dev-12',
-  'unifunc' => 'content_5ba072cdc34379_12388067',
+  'unifunc' => 'content_5ba19b593727d2_31449112',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0f5c33b1c33635b8c8e3744b7e6041a684ad3d9e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CodeIgniter\\application\\views\\templates\\post.tpl',
-      1 => 1537241802,
+      1 => 1537317718,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ba072cdc34379_12388067 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ba19b593727d2_31449112 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="ja">
 <head>
 	<meta charset="utf-8">
@@ -53,7 +53,8 @@ foreach ($_from as $_smarty_tpl->tpl_vars['keyvar']->value => $_smarty_tpl->tpl_
 ?>
 			<div class="article_list">
 				<p><a href="<?php echo $_smarty_tpl->tpl_vars['url']->value;?>
-?post_id=<?php echo $_smarty_tpl->tpl_vars['itemvar']->value[0];?>
+?page=<?php echo $_GET['page'];?>
+&post_id=<?php echo $_smarty_tpl->tpl_vars['itemvar']->value[0];?>
 "><?php echo $_smarty_tpl->tpl_vars['itemvar']->value[1];?>
 </a><br>
 					<?php echo $_smarty_tpl->tpl_vars['keyvar']->value;?>
@@ -89,6 +90,7 @@ $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 
 		<h3><?php echo $_smarty_tpl->tpl_vars['single_query_title']->value;?>
 </h3><?php echo $_smarty_tpl->tpl_vars['single_query_created']->value;?>
 <p><?php echo $_smarty_tpl->tpl_vars['single_query_body']->value;?>
+</p><p><?php echo $_smarty_tpl->tpl_vars['single_query_category']->value;?>
 </p>
 	</div>
 	<form method="post">
