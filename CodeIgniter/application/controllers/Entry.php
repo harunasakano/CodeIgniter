@@ -14,6 +14,13 @@ class Entry extends CI_Controller {
 	}
 
     public function index(){
+
+			//最初にログインチェック
+			if(is_null($_SESSION['login_user'])){
+				header('Location:http://localhost/codeIgniter/index.php/login?announce');
+				exit();
+			}
+
 			$data['select_category'] = ['カテゴリ１','カテゴリ２','カテゴリ３','カテゴリ４'];
             $this->smarty->view('form.tpl',$data);
 			$mode = $this->input->post('mode');

@@ -16,8 +16,8 @@ class Login extends CI_Controller {
 	public function index(){
 
 		//ログインチェック
-		if(isset($_SESSION['status'])){
-		 	$data['login_user'] = $_SESSION['status'];
+		if(isset($_SESSION['login_user'])){
+		 	$data['login_user'] = $_SESSION['login_user'];
 		 }
 
 		$this->smarty->view('login.tpl');
@@ -68,7 +68,7 @@ class Login extends CI_Controller {
 
 			//一致したデータが返ってくればログイン成功
 			if (empty($login_result)==false) {
-				$login_result['status'] = $login_result[0]->id;
+				$login_result['login_user'] = $login_result[0]->id;
 				$this->session->set_userdata($login_result);
 
 				$success_message =  "login";

@@ -7,9 +7,22 @@ class Blog extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model("blog_model");
+		$this->load->model("Admin_model");
 	}
 
 	function index(){
+		//セッションにブログタイトル格納
+		$blog_data = $this->Admin_model->get_blog_title();
+		$blog_title['blog_title'] = $blog_data[0]->title;
+		$this->session->set_userdata($blog_title);
+
+		//ログアウトリクエスト時
+		if (isset($_POST['logout'])){
+			unset($_SESSION['login_user']);
+			header('Location:http://localhost/codeIgniter/index.php/blog?logout=done');
+			exit();
+		}
+
 		$data['post_id'] = null;
 		$data['back'] = null;
 		$request_id = null;
@@ -27,17 +40,6 @@ class Blog extends CI_Controller {
 		//記事のリンク渡し
 		$this->load->helper('url');
 		$data['url'] = base_url();
-
-		// //blog_modelのget_all_postメソッドを実行してデータをqueryに格納
-		// if (isset($_GET['page'])==false){
-		// $getData = $this->blog_model->get_new_posts();
-		// //日付をキーにして、タイトルと本文を格納
-		// 		for ($i=0; $i <count($getData); $i++) {
-		// 			$data['article'][$getData[$i]->created][]= $getData[$i]->id;
-		// 			$data['article'][$getData[$i]->created][]= $getData[$i]->title;
-		// 		}
-		// 			$this->smarty->view('post.tpl',$data);
-		// }
 
 		//もし最新以外のページ送りがリクエストされたらこちらを表示
 		if (isset($_GET['page'])){

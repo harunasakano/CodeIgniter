@@ -4,8 +4,11 @@
 </head>
 <body>
 	<h2>ログインフォーム</h2>
-	{if isset($smarty.session.status)}
-	<p>{$smarty.session.status}さんでログイン中</p>
+	{if isset($smarty.get.announce)}
+	<p>編集にはログインが必要です</p>
+	{/if}
+	{if isset($smarty.session.login_user)}
+	<p>{$smarty.session.login_user}さんでログイン中</p>
 	{/if}
 	{if isset($error_text)}
 	{foreach $error_text as $error_v}

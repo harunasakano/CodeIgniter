@@ -11,9 +11,22 @@ class Admin extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model("blog_model");
+		$this->load->model("Admin_model");
 	}
 
     public function index(){
+
+			//最初にログインチェック
+			if(is_null($_SESSION['login_user'])){
+				header('Location:http://localhost/codeIgniter/index.php/login?announce');
+				exit();
+			}
+
+			//セッションにブログタイトル格納
+			 $blog_data = $this->Admin_model->get_blog_title();
+			 $blog_title['blog_title'] = $blog_data[0]->title;
+			 $this->session->set_userdata($blog_title);
+
 			$data['post_id'] = null;
 			$data['back'] = null;
 			$request_id = null;
@@ -56,14 +69,14 @@ class Admin extends CI_Controller {
 			}
 
 			//記事選択後、クリックされた後の表示
-					if (isset($request_id)){
-						$content = $this->blog_model->get_content($request_id);
-						$data['single_query_created'] = $content[0]->created;
-						$data['single_query_title'] = $content[0]->title;
-						$data['single_query_body'] = $content[0]->body;
-						$data['single_query_category'] = $content[0]->category_id;
-					}
-						$this->smarty->view('admin.tpl',$data);
+			if (isset($request_id)){
+				$content = $this->blog_model->get_content($request_id);
+				$data['single_query_created'] = $content[0]->created;
+				$data['single_query_title'] = $content[0]->title;
+				$data['single_query_body'] = $content[0]->body;
+				$data['single_query_category'] = $content[0]->category_id;
+				}
+				$this->smarty->view('admin.tpl',$data);
 
 			//変更ボタンが押された時の処理
 			$edit = null;
@@ -73,26 +86,52 @@ class Admin extends CI_Controller {
 				$category = $this->input->post('category');
 				$title = $this->input->post('title');
 				$content = $this->input->post('content');
-
 				$error_result = entry_validation($category,$title,$content);
 			}
 
-			//戻る押下時の処理
-					if(isset($_POST['action']) && isset($_GET['page'])){
-						$page = $_GET['page'];
-						$data['post_id'] = null;
-						$request_id = null;
-						$data['back'] = $_POST['action'];
-						$url = 'http://localhost/codeIgniter/index.php/admin?page='.$page;
-						header('Location: '.$url);
-						exit();
+			//新規作成ボタン押下時の処理
+			if (isset($_POST['post']) && $_POST['post']=='new_post'){
+				header('Location:http://localhost/codeIgniter/index.php/entry');
+				exit();
+			}
 
-					}else if(isset($_POST['action'])){
-						$data['post_id'] = null;
-						$request_id = null;
-						$data['back'] = $_POST['action'];
-						header('Location:http://localhost/codeIgniter/index.php/admin');
-						exit();
+			//ブログタイトル変更押下時の処理
+			if (isset($_POST['b_change']) && $_POST['b_change']=='b_title_change'){
+				if(is_null($_SESSION['login_user'])){
+					header('Location:http://localhost/codeIgniter/index.php/login');
+					exit();
+				}else{
+					$b_title = $_POST['title_edit'];
+					$b_title = htmlspecialchars($b_title);
+
+					if($b_title == $_SESSION['blog_title']){
+					header('Location:http://localhost/codeIgniter/index.php/admin');
+					exit();
+
+					}else{
+					$this->Admin_model->blog_new_title_save($b_title);
+					header('Location:http://localhost/codeIgniter/index.php/admin?title_edit');
+					exit();
 					}
+				}
+			}
+
+			//戻る押下時の処理
+			if (isset($_POST['action']) && isset($_GET['page'])){
+				$page = $_GET['page'];
+				$data['post_id'] = null;
+				$request_id = null;
+				$data['back'] = $_POST['action'];
+				$url = 'http://localhost/codeIgniter/index.php/admin?page='.$page;
+				header('Location: '.$url);
+				exit();
+
+			}else if (isset($_POST['action'])){
+				$data['post_id'] = null;
+				$request_id = null;
+				$data['back'] = $_POST['action'];
+				header('Location:http://localhost/codeIgniter/index.php/admin');
+				exit();
+				}
 	}
 }

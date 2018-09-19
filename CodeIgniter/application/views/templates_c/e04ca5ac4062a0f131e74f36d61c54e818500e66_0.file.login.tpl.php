@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33-dev-12, created on 2018-09-14 17:58:25
+/* Smarty version 3.1.33-dev-12, created on 2018-09-19 15:55:19
   from 'C:\xampp\htdocs\CodeIgniter\application\views\templates\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33-dev-12',
-  'unifunc' => 'content_5b9b78317d0e75_57137222',
+  'unifunc' => 'content_5ba1f2d74e8b74_68321889',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e04ca5ac4062a0f131e74f36d61c54e818500e66' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CodeIgniter\\application\\views\\templates\\login.tpl',
-      1 => 1536915430,
+      1 => 1537339901,
       2 => 'file',
     ),
   ),
@@ -20,15 +20,18 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5b9b78317d0e75_57137222 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ba1f2d74e8b74_68321889 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="ja">
 <head>
 	<meta charset="utf-8">
 </head>
 <body>
 	<h2>ログインフォーム</h2>
-	<?php if (isset($_SESSION['status'])) {?>
-	<p><?php echo $_SESSION['status'];?>
+	<?php if (isset($_GET['announce'])) {?>
+	<p>編集にはログインが必要です</p>
+	<?php }?>
+	<?php if (isset($_SESSION['login_user'])) {?>
+	<p><?php echo $_SESSION['login_user'];?>
 さんでログイン中</p>
 	<?php }?>
 	<?php if (isset($_smarty_tpl->tpl_vars['error_text']->value)) {?>

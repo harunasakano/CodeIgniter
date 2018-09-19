@@ -1,18 +1,25 @@
 <html lang="ja">
 <head>
 	<meta charset="utf-8">
-	<title>CodeIgniter's BLOG</title>
+	<title>{$smarty.session.blog_title}</title>
 </head>
 <body>
-	<h2><a href="http://localhost/codeIgniter/index.php/entry">CodeIgniter's BLOG</a></h2>
-{if isset($smarty.session.status)==false}
+	<h2><a href="http://localhost/codeIgniter/index.php/admin">{$smarty.session.blog_title}</a></h2>
+{if isset($smarty.session.login_user)==false}
 <a href="http://localhost/codeIgniter/index.php/login">ログイン</a>
 {/if}
-{if isset($smarty.get.success)}
+{if isset($smarty.get.success) && isset($smarty.session.login_user)}
 <p>ログインしました！</p>
 {/if}
-{if isset($smarty.session.status)}
-<p><a href="http://localhost/codeIgniter/index.php/login">{$smarty.session.status}さん</a>でログイン中</p>
+{if isset($smarty.get.logout) && isset($smarty.session.login_user)==false}
+<p>ログアウトしました！</p>
+{/if}
+{if isset($smarty.session.login_user)}
+<p><a href="http://localhost/codeIgniter/index.php/login">{$smarty.session.login_user}さん</a>でログイン中
+<form method="post" name="form1" action="">
+    <input type="hidden" name="logout" value="logout">
+    <a href="javascript:form1.submit()" onclick="return confirm('本当にログアウトしますか？')">ログアウト</a>
+</form></p>
 {/if}
 {if is_null($post_id)}
 	<div class="new_article_list">
