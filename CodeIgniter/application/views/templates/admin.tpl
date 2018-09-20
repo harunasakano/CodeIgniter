@@ -4,11 +4,10 @@
 <title>Blog_Admin</title>
 </head>
 	<body>
-		<form method="post">
 		<div class="container">
-		</form>
 				<h3>記事編集</h3>
 				{if is_null($post_id)}
+				<form method="post">
 					<div style="font-size:20px; color:pink;">admin_page</div>
 					{if isset($smarty.get.title_edit)}
 					<p>タイトル変更完了しました</p>
@@ -17,7 +16,29 @@
 						<div class="butten_change">
 							<div style="margin-bottom: 15px;"><button type='submit' name='b_change' value='b_title_change'>ブログタイトル変更</button></div>
 							<div style="margin-bottom: 15px;"><button type='submit' name='post' value='new_post'>新規記事作成</button></div>
+						</form>
 						</div>
+						<div>カテゴリー</div>
+						{if isset($smarty.get.add_category)}
+						<p>カテゴリ追加しました</p>
+						{/if}
+						{if isset ($category_error)}
+						{foreach $category_error as $error_v}
+						<p style="color: red;">{$error_v}</p>
+						{/foreach}
+						{/if}
+						<form method="post">
+						<input type="text" name="category_input" value="">
+						<div style="margin-bottom: 10px; margin-top: 10px;"><button type='submit' name='edit' value='add_category'>新規カテゴリ追加</button></div>
+						{if isset ($c_destroy_empty_error)}
+						<p style="color: red;">{$c_destroy_empty_error}</p>
+						{/if}
+						<p>
+						{foreach $category_list as $c_id=>$c_name}
+						<input type="checkbox" name="category_list" value="{$c_id}">{$c_name}<br>
+						{/foreach}
+						</p>
+						<div style="margin-bottom: 10px; margin-top: 10px;"><button type='submit' name='c_destroy' value='destroy'>削除</button></div>
 					{if isset($smarty.get.page)}
 						{foreach $article as $keyvar=>$itemvar}
 							<div class="article_list">
@@ -25,6 +46,7 @@
 									{$keyvar}</p>
 							</div>
 						{/foreach}
+					</form>
 					{else}
 					{foreach $article as $keyvar=>$itemvar}
 					<div class="article_list">
@@ -42,10 +64,6 @@
 						{/if}
 					{/for}
 					</div>
-					<div>カテゴリー</div>
-					<input type="text" name="category_input">
-					<div style="margin-bottom: 10px; margin-top: 10px;"><button type='submit' name='edit' value='change'>新規追加</button></div>
-					<div style="margin-bottom: 10px; margin-top: 10px;"><button type='submit' name='action' value='back'>削除</button></div>
 				{else}
 				<form method="post">
 					<div class="single_edit_content">
@@ -66,6 +84,6 @@
 					<div style="margin-bottom:30px;"><button type='submit' name='action' value='back'>記事一覧に戻る</button></div>
 					</form>
 				{/if}
-					</div>
+		</div>
 	</body>
 </html>

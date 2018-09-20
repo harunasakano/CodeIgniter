@@ -22,6 +22,16 @@ class Admin extends CI_Controller {
 				exit();
 			}
 
+			//カテゴリ一覧呼び出し
+			$answer = $this->Admin_model->get_blog_category();
+
+			for ($i=0; $i<count($answer); $i++) {
+				$category_list[$answer[$i]->id] = $answer[$i]->name;
+				$category_id[] = $answer[$i]->id;
+			}
+			$data['category_list'] = $category_list;
+			$this->smarty->view('admin.tpl',$data);
+
 			//セッションにブログタイトル格納
 			 $blog_data = $this->Admin_model->get_blog_title();
 			 $blog_title['blog_title'] = $blog_data[0]->title;
@@ -66,6 +76,43 @@ class Admin extends CI_Controller {
 							$data['article'][$getData_old[$i]->created][]= $getData_old[$i]->title;
 						}
 							$this->smarty->view('admin.tpl',$data);
+			}
+
+			//カテゴリ追加押下時の処理
+			if (isset($_POST['edit']) && isset($_POST['category_input'])) {
+				$new_category = $_POST['category_input'];
+				$new_category = htmlspecialchars($new_category);
+				$error_result = category_save_validation($new_category,$category_list);
+
+				if(isset($error_result)){
+					$data['category_error'] = $error_result;
+					$this->smarty->view('admin.tpl',$data);
+
+				}else{
+				$this->Admin_model->save_blog_category($new_category);
+				header('Location:http://localhost/codeIgniter/index.php/admin?add_category');
+				}
+			}
+
+
+			//カテゴリ削除押下時の処理
+			if((isset($_POST['c_destroy']) && $_POST['c_destroy'] == 'destroy' ) && isset($_POST['category_list'])) {
+				$d_category_id = $_POST['category_list'];
+				var_dump($_POST);
+				exit();
+
+				$error_result_c = category_destroy_validation($d_category_id,$category_id);
+
+				if(isset($error_result_c)){
+					$data['c_destroy_error'] = $error_result_c;
+					$this->smarty->view('admin.tpl',$data);
+				}else{
+					$this->Admin_model->destroy_blog_category($d_category_id);
+					$this->smarty->view('admin.tpl',$data);
+				}
+			}else if(isset($_POST['category_list'])==false && isset($_POST['c_destroy'])){
+				$data['c_destroy_empty_error'] = "カテゴリが選択されていません";
+				$this->smarty->view('admin.tpl',$data);
 			}
 
 			//記事選択後、クリックされた後の表示
@@ -132,6 +179,6 @@ class Admin extends CI_Controller {
 				$data['back'] = $_POST['action'];
 				header('Location:http://localhost/codeIgniter/index.php/admin');
 				exit();
-				}
+			}
 	}
 }

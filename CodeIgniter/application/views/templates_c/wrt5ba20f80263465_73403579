@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33-dev-12, created on 2018-09-20 17:56:43
+/* Smarty version 3.1.33-dev-12, created on 2018-09-19 17:57:36
   from 'C:\xampp\htdocs\CodeIgniter\application\views\templates\admin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33-dev-12',
-  'unifunc' => 'content_5ba360cb663c50_01963120',
+  'unifunc' => 'content_5ba20f80260c04_01856142',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '54387aeaf11722ded25c216b9490d29701b123fe' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CodeIgniter\\application\\views\\templates\\admin.tpl',
-      1 => 1537433647,
+      1 => 1537347448,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ba360cb663c50_01963120 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ba20f80260c04_01856142 (Smarty_Internal_Template $_smarty_tpl) {
 ?><head>
 <html lang="ja">
 <meta charset="utf-8">
@@ -40,12 +40,8 @@ function content_5ba360cb663c50_01963120 (Smarty_Internal_Template $_smarty_tpl)
 						<div class="butten_change">
 							<div style="margin-bottom: 15px;"><button type='submit' name='b_change' value='b_title_change'>ブログタイトル変更</button></div>
 							<div style="margin-bottom: 15px;"><button type='submit' name='post' value='new_post'>新規記事作成</button></div>
-						</form>
 						</div>
 						<div>カテゴリー</div>
-						<?php if (isset($_GET['add_category'])) {?>
-						<p>カテゴリ追加しました</p>
-						<?php }?>
 						<?php if (isset($_smarty_tpl->tpl_vars['category_error']->value)) {?>
 						<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['category_error']->value, 'error_v');
@@ -59,28 +55,9 @@ foreach ($_from as $_smarty_tpl->tpl_vars['error_v']->value) {
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 						<?php }?>
-						<form method="post">
 						<input type="text" name="category_input" value="">
 						<div style="margin-bottom: 10px; margin-top: 10px;"><button type='submit' name='edit' value='add_category'>新規カテゴリ追加</button></div>
-						<?php if (isset($_smarty_tpl->tpl_vars['c_destroy_empty_error']->value)) {?>
-						<p style="color: red;"><?php echo $_smarty_tpl->tpl_vars['c_destroy_empty_error']->value;?>
-</p>
-						<?php }?>
-						<p>
-						<?php
-$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['category_list']->value, 'c_name', false, 'c_id');
-if ($_from !== null) {
-foreach ($_from as $_smarty_tpl->tpl_vars['c_id']->value => $_smarty_tpl->tpl_vars['c_name']->value) {
-?>
-						<input type="checkbox" name="category_list" value="<?php echo $_smarty_tpl->tpl_vars['c_id']->value;?>
-"><?php echo $_smarty_tpl->tpl_vars['c_name']->value;?>
-<br>
-						<?php
-}
-}
-$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-						</p>
-						<div style="margin-bottom: 10px; margin-top: 10px;"><button type='submit' name='c_destroy' value='destroy'>削除</button></div>
+						<div style="margin-bottom: 10px; margin-top: 10px;"><button type='submit' name='action' value='back'>削除</button></div>
 					<?php if (isset($_GET['page'])) {?>
 						<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['article']->value, 'itemvar', false, 'keyvar');
@@ -160,7 +137,7 @@ $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 
 					<div style="margin-bottom:30px;"><button type='submit' name='action' value='back'>記事一覧に戻る</button></div>
 					</form>
 				<?php }?>
-		</div>
+					</div>
 	</body>
 </html>
 <?php }

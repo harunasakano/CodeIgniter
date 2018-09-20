@@ -54,3 +54,47 @@ function validation($user_id,$password){
 	}
 	return $error;
 	}
+
+//カテゴリ新規追加バリデーション
+function category_save_validation($new_category,$category_list){
+
+	$error = null;
+
+	if (empty($new_category)){
+		$error[] = "カテゴリが空欄のままです";
+	}else if(preg_match("/^[ 　\t\r\n]+$/", $new_category)) {
+		$error[] = "空欄のみの入力はできません";
+	}
+
+	if (array_search($new_category, $category_list)){
+		$error[] = "既に存在するカテゴリです";
+	}
+	return $error;
+}
+
+//カテゴリ削除時の入力チェック
+function category_destroy_validation($d_category_id,$category_id){
+
+	$error = null;
+
+	if (empty($d_category_id)){
+		$error[] = "カテゴリが選択されていません";
+	}
+
+	//削除カテゴリが複数（配列）だった場合
+	if (is_array($d_category_id)){
+		foreach($d_category_id as $d_category_id_list){
+			if (array_search($d_category_id, $d_category_id_list)==false){
+				$error[] = "入力値エラーです";
+			}
+		}
+	}
+
+	//idと一致した値が送られてきているか
+	if (array_search($d_category_id, $category_id)==false){
+		$error[] = "入力値エラーです";
+	}
+
+	return $error;
+
+}
