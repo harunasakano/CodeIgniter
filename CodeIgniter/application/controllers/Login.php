@@ -55,7 +55,7 @@ class Login extends CI_Controller {
 			//バリデーションOK、同一ユーザもいない場合新規登録
 			}else{
 				$this->User_model->save_new_user($user_id,$password);
-				header('Location:http://localhost/codeIgniter/index.php/login');
+				header('Location:http://localhost/codeIgniter/index.php/login?newuser=login');
 				exit();
 			}
 

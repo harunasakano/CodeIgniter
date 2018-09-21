@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33-dev-12, created on 2018-09-21 11:54:26
+/* Smarty version 3.1.33-dev-12, created on 2018-09-21 15:36:34
   from 'C:\xampp\htdocs\CodeIgniter\application\views\templates\admin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33-dev-12',
-  'unifunc' => 'content_5ba45d62e65639_02685738',
+  'unifunc' => 'content_5ba4917281c586_72429068',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '54387aeaf11722ded25c216b9490d29701b123fe' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CodeIgniter\\application\\views\\templates\\admin.tpl',
-      1 => 1537498465,
+      1 => 1537511793,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ba45d62e65639_02685738 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ba4917281c586_72429068 (Smarty_Internal_Template $_smarty_tpl) {
 ?><head>
 <html lang="ja">
 <meta charset="utf-8">
@@ -156,6 +156,9 @@ $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 
 					<?php }
 }
 ?>
+					<div style="margin-top:10px; margin-bottom:10px">
+					<a href="http://localhost/codeIgniter/index.php/blog">TOPに戻る</a>
+					</div>
 					</div>
 				<?php } else { ?>
 				<form method="post">

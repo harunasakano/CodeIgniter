@@ -23,6 +23,9 @@
 	{/if}
 	<form method="post">
 	<div  class="login_form">
+		{if isset($smarty.get.newuser)}
+		<p>新規ユーザ登録しました。再度ログインしてください</p>
+		{/if}
 		<div style="margin: 10px;" class="user_form">ユーザID
 			<input type="text" name="user_id">
 		</div>
@@ -32,9 +35,14 @@
 		<div style="margin: 10px;" class="req_button">
 			<input type="hidden" name="mode" value="request">
 			<button type='submit' name='login' value='login_req'>ログイン</button>
+			{if isset($smarty.session.login_user)==false}
 			<button type='submit' name='registration' value='registration_req'>新規登録</button>
+			{/if}
 		</div>
 	</div>
 	</form>
+	<div>
+	<a href="http://localhost/codeIgniter/index.php/blog">TOPに戻る</a>
+	</div>
 </body>
 </html>

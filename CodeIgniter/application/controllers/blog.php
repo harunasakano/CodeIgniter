@@ -68,7 +68,9 @@ class Blog extends CI_Controller {
 					$data['single_query_created'] = $content[0]->created;
 					$data['single_query_title'] = $content[0]->title;
 					$data['single_query_body'] = $content[0]->body;
-					$data['single_query_category'] = $content[0]->category_id;
+					$category_id = $content[0]->category_id;
+					$category_title = $this->blog_model->get_category($category_id);
+					$data['single_query_category'] = $category_title;
 				}
 					$this->smarty->view("post.tpl",$data);
 

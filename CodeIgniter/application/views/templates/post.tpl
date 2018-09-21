@@ -3,7 +3,7 @@
 	<meta charset="utf-8">
 	<title>{$smarty.session.blog_title}</title>
 </head>
-<body>
+<body style="width: 100%;">
 	<h2><a href="http://localhost/codeIgniter/index.php/admin">{$smarty.session.blog_title}</a></h2>
 {if isset($smarty.session.login_user)==false}
 <a href="http://localhost/codeIgniter/index.php/login">ログイン</a>
@@ -55,8 +55,18 @@
 	{/for}
 	</div>
 {else}
-	<div class="single_content">
-		<h3>{$single_query_title}</h3>{$single_query_created}<p>{$single_query_body}</p><p>{$single_query_category}</p>
+	<div class="single_content"
+			style=" margin: 2em auto;
+ 			padding: 1em 1.5em;
+ 			width: 90%;
+ 			color: #777777;
+			background-color: #fff;
+			border: 4px solid #f6bfbc;
+			border-radius: 3em .8em 3em .7em/.9em 2em .8em 3em;">
+		<h3><span style="border-bottom: solid 2px pink;">記事タイトル：{$single_query_title}</span></h3>
+		<p>更新日時：{$single_query_created}</p>
+		<p>本文：{$single_query_body}</p>
+		<p>カテゴリ：{$single_query_category}</p>
 	</div>
 	<form method="post">
 	<button type='submit' name='action' value='back'>記事一覧に戻る</button>

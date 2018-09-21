@@ -75,6 +75,9 @@
 						<a href="http://localhost/codeIgniter/index.php/admin?page={$i}">{$i}</a>
 						{/if}
 					{/for}
+					<div style="margin-top:10px; margin-bottom:10px">
+					<a href="http://localhost/codeIgniter/index.php/blog">TOPに戻る</a>
+					</div>
 					</div>
 				{else}
 				<form method="post">

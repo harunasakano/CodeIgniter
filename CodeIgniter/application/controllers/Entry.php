@@ -11,6 +11,7 @@ class Entry extends CI_Controller {
 	function __construct(){
 		parent::__construct();
 		$this->load->model("blog_model");
+		$this->load->model("Admin_model");
 	}
 
     public function index(){
@@ -21,10 +22,18 @@ class Entry extends CI_Controller {
 				exit();
 			}
 
-			$data['select_category'] = ['カテゴリ１','カテゴリ２','カテゴリ３','カテゴリ４'];
-            $this->smarty->view('form.tpl',$data);
-			$mode = $this->input->post('mode');
+			//カテゴリ一覧呼び出し
+			$answer = $this->Admin_model->get_blog_category();
 
+			for ($i=0; $i<count($answer); $i++) {
+				$category_list[$answer[$i]->id] = $answer[$i]->name;
+				$category_id[] = $answer[$i]->id;
+			}
+
+			$data['category_list'] = $category_list;
+			$this->smarty->view('form.tpl',$data);
+
+			$mode = $this->input->post('mode');
 			if ($mode == 'post') {
 				$category = $this->input->post('category');
 				$title = $this->input->post('title');

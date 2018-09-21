@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33-dev-12, created on 2018-09-19 15:55:19
+/* Smarty version 3.1.33-dev-12, created on 2018-09-21 15:50:35
   from 'C:\xampp\htdocs\CodeIgniter\application\views\templates\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33-dev-12',
-  'unifunc' => 'content_5ba1f2d74e8b74_68321889',
+  'unifunc' => 'content_5ba494bb873005_35705561',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e04ca5ac4062a0f131e74f36d61c54e818500e66' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CodeIgniter\\application\\views\\templates\\login.tpl',
-      1 => 1537339901,
+      1 => 1537512631,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ba1f2d74e8b74_68321889 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ba494bb873005_35705561 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="ja">
 <head>
 	<meta charset="utf-8">
@@ -57,6 +57,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 	<?php }?>
 	<form method="post">
 	<div  class="login_form">
+		<?php if (isset($_GET['newuser'])) {?>
+		<p>新規ユーザ登録しました。再度ログインしてください</p>
+		<?php }?>
 		<div style="margin: 10px;" class="user_form">ユーザID
 			<input type="text" name="user_id">
 		</div>
@@ -66,10 +69,15 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 		<div style="margin: 10px;" class="req_button">
 			<input type="hidden" name="mode" value="request">
 			<button type='submit' name='login' value='login_req'>ログイン</button>
+			<?php if (isset($_SESSION['login_user']) == false) {?>
 			<button type='submit' name='registration' value='registration_req'>新規登録</button>
+			<?php }?>
 		</div>
 	</div>
 	</form>
+	<div>
+	<a href="http://localhost/codeIgniter/index.php/blog">TOPに戻る</a>
+	</div>
 </body>
 </html>
 <?php }

@@ -18,7 +18,7 @@
 				</tr>
 				<tr>
 					<td>カテゴリ選択</td>
-					<td>{html_options name=category options=$select_category selected=$select_category}</td>
+					<td>{html_options name=category options=$category_list selected=$category_list}</td>
 				</tr>
 				<tr>
 					<td>本文</td>

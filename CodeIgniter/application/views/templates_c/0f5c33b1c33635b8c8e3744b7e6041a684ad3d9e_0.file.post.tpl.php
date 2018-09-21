@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33-dev-12, created on 2018-09-19 16:01:35
+/* Smarty version 3.1.33-dev-12, created on 2018-09-21 17:25:40
   from 'C:\xampp\htdocs\CodeIgniter\application\views\templates\post.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33-dev-12',
-  'unifunc' => 'content_5ba1f44f33af29_95540231',
+  'unifunc' => 'content_5ba4ab0402a500_58523820',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0f5c33b1c33635b8c8e3744b7e6041a684ad3d9e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CodeIgniter\\application\\views\\templates\\post.tpl',
-      1 => 1537340493,
+      1 => 1537518326,
       2 => 'file',
     ),
   ),
@@ -20,14 +20,14 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ba1f44f33af29_95540231 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5ba4ab0402a500_58523820 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="ja">
 <head>
 	<meta charset="utf-8">
 	<title><?php echo $_SESSION['blog_title'];?>
 </title>
 </head>
-<body>
+<body style="width: 100%;">
 	<h2><a href="http://localhost/codeIgniter/index.php/admin"><?php echo $_SESSION['blog_title'];?>
 </a></h2>
 <?php if (isset($_SESSION['login_user']) == false) {?>
@@ -115,11 +115,21 @@ $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 
 ?>
 	</div>
 <?php } else { ?>
-	<div class="single_content">
-		<h3><?php echo $_smarty_tpl->tpl_vars['single_query_title']->value;?>
-</h3><?php echo $_smarty_tpl->tpl_vars['single_query_created']->value;?>
-<p><?php echo $_smarty_tpl->tpl_vars['single_query_body']->value;?>
-</p><p><?php echo $_smarty_tpl->tpl_vars['single_query_category']->value;?>
+	<div class="single_content"
+			style=" margin: 2em auto;
+ 			padding: 1em 1.5em;
+ 			width: 90%;
+ 			color: #777777;
+			background-color: #fff;
+			border: 4px solid #f6bfbc;
+			border-radius: 3em .8em 3em .7em/.9em 2em .8em 3em;">
+		<h3><span style="border-bottom: solid 2px pink;">記事タイトル：<?php echo $_smarty_tpl->tpl_vars['single_query_title']->value;?>
+</span></h3>
+		<p>更新日時：<?php echo $_smarty_tpl->tpl_vars['single_query_created']->value;?>
+</p>
+		<p>本文：<?php echo $_smarty_tpl->tpl_vars['single_query_body']->value;?>
+</p>
+		<p>カテゴリ：<?php echo $_smarty_tpl->tpl_vars['single_query_category']->value;?>
 </p>
 	</div>
 	<form method="post">

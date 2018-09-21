@@ -44,8 +44,16 @@ class Blog_model extends CI_Model{
 			$this->db->insert('post',$data);
 	}
 
+//idによってコンテントを返す
 	public function get_content($id){
 		$query = $this->db->get_where('post',array('id'=>$id));
 		return $query->result();
+	}
+
+//カテゴリIDによってカテゴリ返す
+	public function get_category($category_id){
+		$category_data = $this->db->get_where('category',array('id'=>$category_id));
+		$query = $category_data->row('name');
+		return $query;
 	}
 }
