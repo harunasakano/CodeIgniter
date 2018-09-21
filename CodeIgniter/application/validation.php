@@ -83,15 +83,13 @@ function category_destroy_validation($d_category_id,$category_id){
 
 	//削除カテゴリが複数（配列）だった場合
 	if (is_array($d_category_id)){
-		foreach($d_category_id as $d_category_id_list){
-			if (array_search($d_category_id, $d_category_id_list)==false){
-				$error[] = "入力値エラーです";
+		foreach($d_category_id as $d_category_id_value){
+			if (in_array($d_category_id_value, $category_id)==false){
+				var_dump(in_array($d_category_id_value, $category_id));
+				$error[] = "入力値エラーですにゅ";
 			}
 		}
-	}
-
-	//idと一致した値が送られてきているか
-	if (array_search($d_category_id, $category_id)==false){
+	}else if (array_search($d_category_id, $category_id)==false){
 		$error[] = "入力値エラーです";
 	}
 
