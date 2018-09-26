@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33-dev-12, created on 2018-09-21 17:25:40
+/* Smarty version 3.1.33-dev-12, created on 2018-09-26 09:29:34
   from 'C:\xampp\htdocs\CodeIgniter\application\views\templates\post.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33-dev-12',
-  'unifunc' => 'content_5ba4ab0402a500_58523820',
+  'unifunc' => 'content_5baad2ee46feb1_23353393',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0f5c33b1c33635b8c8e3744b7e6041a684ad3d9e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CodeIgniter\\application\\views\\templates\\post.tpl',
-      1 => 1537518326,
+      1 => 1537855369,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ba4ab0402a500_58523820 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5baad2ee46feb1_23353393 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="ja">
 <head>
 	<meta charset="utf-8">
@@ -40,17 +40,18 @@ if (isset($_GET['logout']) && isset($_SESSION['login_user']) == false) {?>
 <p>ログアウトしました！</p>
 <?php }
 if (isset($_SESSION['login_user'])) {?>
+<div style=font-size:20px;>
 <p><a href="http://localhost/codeIgniter/index.php/login"><?php echo $_SESSION['login_user'];?>
-さん</a>でログイン中
+さん</a>でログイン中</p></div>
 <form method="post" name="form1" action="">
     <input type="hidden" name="logout" value="logout">
     <a href="javascript:form1.submit()" onclick="return confirm('本当にログアウトしますか？')">ログアウト</a>
-</form></p>
+</form>
 <?php }
 if (is_null($_smarty_tpl->tpl_vars['post_id']->value)) {?>
 	<div class="new_article_list">
 		<?php if (isset($_GET['page']) == false) {?>
-		<p>新着記事</p>
+		<h3 style="color:#FB5B5B">新着記事</h3>
 		<?php }?>
 		<?php if (isset($_GET['post'])) {?>
 		<div style="color:blue;">NEW!</div>
@@ -128,7 +129,8 @@ $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 
 		<p>更新日時：<?php echo $_smarty_tpl->tpl_vars['single_query_created']->value;?>
 </p>
 		<p>本文：<?php echo $_smarty_tpl->tpl_vars['single_query_body']->value;?>
-</p>
+</p>++
+
 		<p>カテゴリ：<?php echo $_smarty_tpl->tpl_vars['single_query_category']->value;?>
 </p>
 	</div>

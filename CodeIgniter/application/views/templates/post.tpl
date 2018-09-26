@@ -15,16 +15,17 @@
 <p>ログアウトしました！</p>
 {/if}
 {if isset($smarty.session.login_user)}
-<p><a href="http://localhost/codeIgniter/index.php/login">{$smarty.session.login_user}さん</a>でログイン中
+<div style=font-size:20px;>
+<p><a href="http://localhost/codeIgniter/index.php/login">{$smarty.session.login_user}さん</a>でログイン中</p></div>
 <form method="post" name="form1" action="">
     <input type="hidden" name="logout" value="logout">
     <a href="javascript:form1.submit()" onclick="return confirm('本当にログアウトしますか？')">ログアウト</a>
-</form></p>
+</form>
 {/if}
 {if is_null($post_id)}
 	<div class="new_article_list">
 		{if isset($smarty.get.page)==false}
-		<p>新着記事</p>
+		<h3 style="color:#FB5B5B">新着記事</h3>
 		{/if}
 		{if isset($smarty.get.post)}
 		<div style="color:blue;">NEW!</div>
@@ -65,7 +66,8 @@
 			border-radius: 3em .8em 3em .7em/.9em 2em .8em 3em;">
 		<h3><span style="border-bottom: solid 2px pink;">記事タイトル：{$single_query_title}</span></h3>
 		<p>更新日時：{$single_query_created}</p>
-		<p>本文：{$single_query_body}</p>
+		<p>本文：{$single_query_body}</p>++
+
 		<p>カテゴリ：{$single_query_category}</p>
 	</div>
 	<form method="post">
