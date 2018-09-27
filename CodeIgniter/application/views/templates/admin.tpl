@@ -51,21 +51,24 @@
 						{/foreach}
 						</p>
 						<div style="margin-bottom: 10px; margin-top: 10px;"><button type='submit' name='c_destroy' value='destroy'>削除</button></div>
-					{if isset($smarty.get.page)}
-						{foreach $article as $keyvar=>$itemvar}
-							<div class="article_list">
-								<p><a href="http://localhost/codeIgniter/index.php/admin?page={$smarty.get.page}&post_id={$itemvar.0}">{$itemvar.1}</a><br>
+						{if isset($smarty.get.update)}
+						<p style="color: green;">記事変更しました！</p>
+						{/if}
+						{if isset($smarty.get.page)}
+							{foreach $article as $keyvar=>$itemvar}
+								<div class="article_list">
+									<p><a href="http://localhost/codeIgniter/index.php/admin?page={$smarty.get.page}&post_id={$itemvar.0}">{$itemvar.1}</a><br>
 									{$keyvar}</p>
-							</div>
-						{/foreach}
-					</form>
-					{else}
-					{foreach $article as $keyvar=>$itemvar}
-					<div class="article_list">
-						<p><a href="http://localhost/codeIgniter/index.php/admin?post_id={$itemvar.0}">{$itemvar.1}</a><br>
+								</div>
+							{/foreach}
+						</form>
+						{else}
+						{foreach $article as $keyvar=>$itemvar}
+						<div class="article_list">
+							<p><a href="http://localhost/codeIgniter/index.php/admin?post_id={$itemvar.0}">{$itemvar.1}</a><br>
 							{$keyvar}</p>
-					</div>
-					{/foreach}
+						</div>
+						{/foreach}
 					{/if}
 					<div class="pagination">
 					{for $i=1 to $pagination}
@@ -82,6 +85,11 @@
 				{else}
 				<form method="post">
 					<div class="single_edit_content">
+						{if isset ($update_error)}
+						{foreach $update_error as $error_v}
+						<p style="color: red;">{$error_v}</p>
+						{/foreach}
+						{/if}
 						<div class="content_title">
 						<div>タイトル：</div>
 						<input type="text" name="edit_title" value="{$single_query_title}">
@@ -89,11 +97,11 @@
 						<div class="content_aria">
 						<div>本文：</div>
 						<textarea name="edit_content" rows="8" cols="80">{$single_query_body}</textarea>
+						<div>カテゴリ選択</div>
+							<div>{html_options name=edit_category options=$category_list selected=$single_query_category}</div>
 						<p>最終更新日：{$single_query_created}</p>
 						</div>
 					</div>
-				</form>
-					<form method="post">
 					<input type=hidden name="edit_id" value="{$smarty.get.post_id}">
 					<div style="margin-bottom:10px;"><button type='submit' name='edit' value='change'>変更する</button></div>
 					<div style="margin-bottom:30px;"><button type='submit' name='action' value='back'>記事一覧に戻る</button></div>

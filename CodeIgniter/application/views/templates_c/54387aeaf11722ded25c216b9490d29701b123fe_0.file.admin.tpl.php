@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33-dev-12, created on 2018-09-21 15:36:34
+/* Smarty version 3.1.33-dev-12, created on 2018-09-27 12:34:34
   from 'C:\xampp\htdocs\CodeIgniter\application\views\templates\admin.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33-dev-12',
-  'unifunc' => 'content_5ba4917281c586_72429068',
+  'unifunc' => 'content_5bac4fca5b6154_43438854',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '54387aeaf11722ded25c216b9490d29701b123fe' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CodeIgniter\\application\\views\\templates\\admin.tpl',
-      1 => 1537511793,
+      1 => 1538019262,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,10 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5ba4917281c586_72429068 (Smarty_Internal_Template $_smarty_tpl) {
-?><head>
+function content_5bac4fca5b6154_43438854 (Smarty_Internal_Template $_smarty_tpl) {
+$_smarty_tpl->_checkPlugins(array(0=>array('file'=>'C:\\xampp\\htdocs\\CodeIgniter\\system\\libraries\\Smarty\\libs\\plugins\\function.html_options.php','function'=>'smarty_function_html_options',),));
+?>
+<head>
 <html lang="ja">
 <meta charset="utf-8">
 <title>Blog_Admin</title>
@@ -102,39 +104,42 @@ foreach ($_from as $_smarty_tpl->tpl_vars['c_id']->value => $_smarty_tpl->tpl_va
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 						</p>
 						<div style="margin-bottom: 10px; margin-top: 10px;"><button type='submit' name='c_destroy' value='destroy'>削除</button></div>
-					<?php if (isset($_GET['page'])) {?>
-						<?php
+						<?php if (isset($_GET['update'])) {?>
+						<p style="color: green;">記事変更しました！</p>
+						<?php }?>
+						<?php if (isset($_GET['page'])) {?>
+							<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['article']->value, 'itemvar', false, 'keyvar');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['keyvar']->value => $_smarty_tpl->tpl_vars['itemvar']->value) {
 ?>
-							<div class="article_list">
-								<p><a href="http://localhost/codeIgniter/index.php/admin?page=<?php echo $_GET['page'];?>
+								<div class="article_list">
+									<p><a href="http://localhost/codeIgniter/index.php/admin?page=<?php echo $_GET['page'];?>
 &post_id=<?php echo $_smarty_tpl->tpl_vars['itemvar']->value[0];?>
 "><?php echo $_smarty_tpl->tpl_vars['itemvar']->value[1];?>
 </a><br>
 									<?php echo $_smarty_tpl->tpl_vars['keyvar']->value;?>
 </p>
-							</div>
-						<?php
+								</div>
+							<?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
-					</form>
-					<?php } else { ?>
-					<?php
+						</form>
+						<?php } else { ?>
+						<?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['article']->value, 'itemvar', false, 'keyvar');
 if ($_from !== null) {
 foreach ($_from as $_smarty_tpl->tpl_vars['keyvar']->value => $_smarty_tpl->tpl_vars['itemvar']->value) {
 ?>
-					<div class="article_list">
-						<p><a href="http://localhost/codeIgniter/index.php/admin?post_id=<?php echo $_smarty_tpl->tpl_vars['itemvar']->value[0];?>
+						<div class="article_list">
+							<p><a href="http://localhost/codeIgniter/index.php/admin?post_id=<?php echo $_smarty_tpl->tpl_vars['itemvar']->value[0];?>
 "><?php echo $_smarty_tpl->tpl_vars['itemvar']->value[1];?>
 </a><br>
 							<?php echo $_smarty_tpl->tpl_vars['keyvar']->value;?>
 </p>
-					</div>
-					<?php
+						</div>
+						<?php
 }
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
@@ -163,6 +168,19 @@ $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 
 				<?php } else { ?>
 				<form method="post">
 					<div class="single_edit_content">
+						<?php if (isset($_smarty_tpl->tpl_vars['update_error']->value)) {?>
+						<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['update_error']->value, 'error_v');
+if ($_from !== null) {
+foreach ($_from as $_smarty_tpl->tpl_vars['error_v']->value) {
+?>
+						<p style="color: red;"><?php echo $_smarty_tpl->tpl_vars['error_v']->value;?>
+</p>
+						<?php
+}
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
+						<?php }?>
 						<div class="content_title">
 						<div>タイトル：</div>
 						<input type="text" name="edit_title" value="<?php echo $_smarty_tpl->tpl_vars['single_query_title']->value;?>
@@ -172,12 +190,13 @@ $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 
 						<div>本文：</div>
 						<textarea name="edit_content" rows="8" cols="80"><?php echo $_smarty_tpl->tpl_vars['single_query_body']->value;?>
 </textarea>
+						<div>カテゴリ選択</div>
+							<div><?php echo smarty_function_html_options(array('name'=>'edit_category','options'=>$_smarty_tpl->tpl_vars['category_list']->value,'selected'=>$_smarty_tpl->tpl_vars['single_query_category']->value),$_smarty_tpl);?>
+</div>
 						<p>最終更新日：<?php echo $_smarty_tpl->tpl_vars['single_query_created']->value;?>
 </p>
 						</div>
 					</div>
-				</form>
-					<form method="post">
 					<input type=hidden name="edit_id" value="<?php echo $_GET['post_id'];?>
 ">
 					<div style="margin-bottom:10px;"><button type='submit' name='edit' value='change'>変更する</button></div>

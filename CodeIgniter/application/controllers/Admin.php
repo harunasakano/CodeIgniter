@@ -109,7 +109,7 @@ class Admin extends CI_Controller {
 					$this->Admin_model->destroy_blog_category($d_category_id);
 					header('Location:http://localhost/codeIgniter/index.php/admin?destroy_category');
 				}
-			
+
 			}else if(isset($_POST['category_list'])==false && isset($_POST['c_destroy'])){
 				$data['c_destroy_empty_error'] = "カテゴリが選択されていません";
 				$this->smarty->view('admin.tpl',$data);
@@ -130,11 +130,20 @@ class Admin extends CI_Controller {
 			$edit = $this->input->post('edit');
 
 			if ($edit == 'change') {
-				$category = $this->input->post('category');
-				$title = $this->input->post('title');
-				$content = $this->input->post('content');
+				$edit_id = $_POST['edit_id'];
+				$category = $this->input->post('edit_category');
+				$title = $this->input->post('edit_title');
+				$content = $this->input->post('edit_content');
 				$error_result = entry_validation($category,$title,$content);
-			}
+
+			 if(is_null($error_result)){
+			 	$this->Admin_model->update_entry($edit_id,$category,$title,$content);
+			 	header('Location:http://localhost/codeIgniter/index.php/admin?update');
+			 }else{
+			 	$data['update_error'] = $error_result;
+			 	$this->smarty->view('admin.tpl',$data);
+			 }
+		 	}
 
 			//新規作成ボタン押下時の処理
 			if (isset($_POST['post']) && $_POST['post']=='new_post'){

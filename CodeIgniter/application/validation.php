@@ -86,7 +86,7 @@ function category_destroy_validation($d_category_id,$category_id){
 		foreach($d_category_id as $d_category_id_value){
 			if (in_array($d_category_id_value, $category_id)==false){
 				var_dump(in_array($d_category_id_value, $category_id));
-				$error[] = "入力値エラーですにゅ";
+				$error[] = "入力値エラーです";
 			}
 		}
 	}else if (array_search($d_category_id, $category_id)==false){

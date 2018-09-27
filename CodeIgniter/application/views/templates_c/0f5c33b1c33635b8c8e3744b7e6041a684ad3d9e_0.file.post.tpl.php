@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.33-dev-12, created on 2018-09-26 09:29:34
+/* Smarty version 3.1.33-dev-12, created on 2018-09-27 09:12:02
   from 'C:\xampp\htdocs\CodeIgniter\application\views\templates\post.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.33-dev-12',
-  'unifunc' => 'content_5baad2ee46feb1_23353393',
+  'unifunc' => 'content_5bac2052aabc99_76929401',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0f5c33b1c33635b8c8e3744b7e6041a684ad3d9e' => 
     array (
       0 => 'C:\\xampp\\htdocs\\CodeIgniter\\application\\views\\templates\\post.tpl',
-      1 => 1537855369,
+      1 => 1538007120,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5baad2ee46feb1_23353393 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5bac2052aabc99_76929401 (Smarty_Internal_Template $_smarty_tpl) {
 ?><html lang="ja">
 <head>
 	<meta charset="utf-8">
@@ -129,7 +129,7 @@ $_smarty_tpl->tpl_vars['i']->first = $_smarty_tpl->tpl_vars['i']->iteration === 
 		<p>更新日時：<?php echo $_smarty_tpl->tpl_vars['single_query_created']->value;?>
 </p>
 		<p>本文：<?php echo $_smarty_tpl->tpl_vars['single_query_body']->value;?>
-</p>++
+</p>
 
 		<p>カテゴリ：<?php echo $_smarty_tpl->tpl_vars['single_query_category']->value;?>
 </p>

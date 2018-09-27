@@ -66,7 +66,7 @@
 			border-radius: 3em .8em 3em .7em/.9em 2em .8em 3em;">
 		<h3><span style="border-bottom: solid 2px pink;">記事タイトル：{$single_query_title}</span></h3>
 		<p>更新日時：{$single_query_created}</p>
-		<p>本文：{$single_query_body}</p>++
+		<p>本文：{$single_query_body}</p>
 
 		<p>カテゴリ：{$single_query_category}</p>
 	</div>

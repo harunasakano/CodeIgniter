@@ -51,6 +51,12 @@ class Admin_model extends CI_Model{
 			return $query->result();
 		}
 
+		//カテゴリIDによってカテゴリ返す
+			public function get_category($category_id){
+				$query = $this->db->get_where('category',array('id'=>$category_id));
+				return $query->result();
+		}
+
 		//カテゴリ削除
 		public function destroy_blog_category($id){
 
@@ -62,5 +68,22 @@ class Admin_model extends CI_Model{
 			$this->db->delete('category', array('id' => $id));
 			}
 			return true;
+		}
+
+		//記事変更
+		public function update_entry($id,$category,$title,$content){
+
+			$this->load->helper('date');
+			$nowtime = unix_to_human(time(), TRUE, 'eu');
+
+			$data = array(
+					'category_id' => $category,
+					'title' => $title,
+					'body' => $content,
+					'modified' => $nowtime
+					);
+
+					$this->db->where('id', $id);
+					$this->db->update('post', $data);
 		}
 }
